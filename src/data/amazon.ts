@@ -6,6 +6,6 @@ export const amazonSkills: Skill[] = [
     name: 'Jab',
     requiredLevel: 1,
     requiredSkills: [],
-    image: 'amazon/Jab_Icon.webp',
+    image: 'https://aodiablo.s3.us-west-2.amazonaws.com/amazon/Jab_Icon.webp',
   }
 ]
