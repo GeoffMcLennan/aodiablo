@@ -3,8 +3,9 @@ import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 import { CharacterInputs } from './features/character/characterInputs';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { Container, createTheme, ThemeProvider } from '@mui/material';
 import { Randomizer } from './features/randomizer/randomizer';
+import { History } from './features/history/history';
 
 const theme = createTheme({
   palette: {
@@ -28,8 +29,11 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <CharacterInputs />
-        <Randomizer />
+        <Container>
+          <CharacterInputs />
+          <Randomizer />
+          <History />
+        </Container>
       </ThemeProvider>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

@@ -1,5 +1,8 @@
+import { Hero } from '../features/character/character';
+import { amazonSkills } from './amazon';
+
+
 export interface Skill {
-  readonly id: string;
   readonly name: string;
   readonly requiredLevel: number;
   readonly requiredSkills: string[];
@@ -7,3 +10,8 @@ export interface Skill {
 }
 
 export * from './amazon';
+
+export const allSkills: Record<Hero, Record<string, Skill>> = {
+  amazon: amazonSkills,
+  
+}

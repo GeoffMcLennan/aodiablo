@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type Hero = 'amazon' | 'assassin';
+export type Hero = 'amazon' /* | 'assassin' */;
 
 export interface CharacterState {
   hero: Hero;
@@ -10,8 +10,8 @@ export interface CharacterState {
 
 const initialState: CharacterState = {
   hero: 'amazon',
-  level: 1,
-  displayLevel: '1',
+  level: 2,
+  displayLevel: '2',
 };
 
 export const characterSlice = createSlice({

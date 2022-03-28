@@ -2,12 +2,14 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import characterReducer from '../features/character/character';
 import randomizerReducer from '../features/randomizer/randomizerSlice';
+import historyReducer from '../features/history/historySlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     character: characterReducer,
     randomizer: randomizerReducer,
+    history: historyReducer,
   },
 });
 

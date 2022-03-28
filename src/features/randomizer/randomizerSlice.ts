@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Skill } from '../../data';
 
 export interface AttributeState {
   strength: number;
@@ -9,6 +10,7 @@ export interface AttributeState {
 
 export interface RandomizerState {
   attributes: AttributeState;
+  skill: string;
 }
 
 const initialState: RandomizerState = {
@@ -17,7 +19,12 @@ const initialState: RandomizerState = {
     dexterity: 0,
     vitality: 0,
     energy: 0,
-  }
+  },
+  skill: '',
+}
+
+export interface RandomizeProps {
+  readonly skillCandidates: Array<[string, Skill]>;
 }
 
 export const randomizerSlice = createSlice({
@@ -26,7 +33,17 @@ export const randomizerSlice = createSlice({
   reducers: {
     updateAttributes: (state) => {
       state.attributes = generateRandomAttributes();
-    }
+    },
+    randomize: (state, props: PayloadAction<RandomizeProps>) => {
+      const attributes = generateRandomAttributes();
+      state.attributes = attributes;
+      const skill = pickRandomSkill(props.payload.skillCandidates);
+      state.skill = skill;
+    },
+    update: (state, newState: PayloadAction<RandomizerState>) => {
+      state.attributes = newState.payload.attributes;
+      state.skill = newState.payload.skill;
+    },
   }
 });
 
@@ -76,6 +93,13 @@ export const generateRandomAttributes = (): AttributeState => {
   }
 }
 
-export const { updateAttributes } = randomizerSlice.actions;
+export const pickRandomSkill = (skillCandidates: Array<[string, Skill]>): string => {
+  console.log(`Picking skill from candidates: ${skillCandidates.map(skill => skill[1].name).join(', ')}`);
+  const rand = Math.floor(Math.random() * skillCandidates.length);
+  console.log(`Picked ${skillCandidates[rand][1].name}`);
+  return skillCandidates[rand][0];
+}
+
+export const { updateAttributes, update } = randomizerSlice.actions;
 
 export default randomizerSlice.reducer;
