@@ -1,44 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Gheeds Gambit
 
-## Available Scripts
+Gamble with Gheed here: https://gheeds-gambit.aodhagan.xyz/
 
-In the project directory, you can run:
+Welcome! This is a small side project I created while waiting for Diablo II Resurrected patch 2.4 to drop. It's a little tool that facilitates a fully random run of Diablo 2, each time you level up in game you can use the tool to "roll the dice" on how you should spend your attribute and skill points. It factors in your characters current level and prerequisite skills so don't worry about not being able to spend your points!
 
-### `npm start`
+## Task Backlog (by approximate priority)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Support classes other than Amazon (I really hate data entry...)
+2. Support skill quests and attribute quests
+3. Persist state/multiple states, and make it shareable (so you don't lose your progress if you close the tab)
+4. Make it less ugly (I also hate CSS)
+4. Support undoing a roll (in case you make a mistake, not just because you don't like the roll 😇)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Feedback
 
-### `npm test`
+Either create an issue on Github, or PM me on [Discord](https://discordapp.com/channels/@me/Aodhagan#0566/)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
