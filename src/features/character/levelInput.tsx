@@ -6,7 +6,7 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
   updateLevel,
   updateDisplayLevel
-} from './character';
+} from './characterSlice';
 
 export const LevelInput = () => {
   const { level, displayLevel } = useAppSelector(state => state.character);

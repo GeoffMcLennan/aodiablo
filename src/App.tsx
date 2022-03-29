@@ -6,6 +6,7 @@ import { Container, createTheme, ThemeProvider } from '@mui/material';
 import { Randomizer } from './features/randomizer/randomizer';
 import { History } from './features/history/history';
 import { BrowserRouter } from 'react-router-dom';
+import { Header } from './features/header';
 
 const theme = createTheme({
   palette: {
@@ -21,7 +22,7 @@ const theme = createTheme({
     allVariants: {
       color: '#afafaf',
     },
-    fontFamily: '"Formal436 BT"'
+    fontFamily: '"Exocet Blizzard", "Formal436 BT"'
   }
 });
 
@@ -30,7 +31,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          <Container>
+          <Header />
+          <Container id ='main-container'>
             <CharacterInputs />
             <Randomizer />
             <History />

@@ -1,6 +1,14 @@
 body {
   margin: 0;
-  font-family: 'Formal436 BT';
+  font-family: 'Exocet Blizzard', 'Formal436 BT';
   background-color: #202020;
   color: #afafaf;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Exocet Blizzard";
+  font-style: normal;
+  font-weight: 500;
+  src: url('https://aodiablo.s3.us-west-2.amazonaws.com/ExocetBlizzardMixedCaps-Medium.woff2') format("woff2"); 
 }

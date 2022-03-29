@@ -8,7 +8,7 @@ import { generateRandomAttributes, pickRandomSkill, RandomizerState, update } fr
 import { Skill } from './skill';
 import { allSkills, Skill as SkillType } from '../../data';
 import { addToHistory } from '../history/historySlice';
-import { updateLevel } from '../character/character';
+import { updateLevel } from '../character/characterSlice';
 
 export const Randomizer = () => {
   const { hero, level } = useAppSelector(state => state.character);

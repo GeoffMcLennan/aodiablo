@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import characterReducer from '../features/character/character';
+import characterReducer from '../features/character/characterSlice';
 import randomizerReducer from '../features/randomizer/randomizerSlice';
 import historyReducer from '../features/history/historySlice';
 

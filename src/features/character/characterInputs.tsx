@@ -7,7 +7,7 @@ import {
   Hero,
   updateHero,
   updateLevel,
-} from './character';
+} from './characterSlice';
 import { LevelInput } from './levelInput';
 
 export const CharacterInputs = () => {

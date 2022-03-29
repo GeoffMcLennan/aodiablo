@@ -1,4 +1,4 @@
-import { Hero } from '../features/character/character';
+import { Hero } from '../features/character/characterSlice';
 import { amazonSkills } from './amazon';
 
 
