@@ -16,7 +16,7 @@ export const History = () => {
     const skillLevel = skillLevelsCopy[roll.skill];
     skillLevelsCopy[roll.skill]--;
     historyRows.push(
-      <li>
+      <li key={currLevel}>
         Level {currLevel--} - 
         Str: {roll.attributes.strength} - 
         Dex: {roll.attributes.dexterity} - 

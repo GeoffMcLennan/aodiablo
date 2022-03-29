@@ -8,9 +8,19 @@ export interface AttributeState {
   energy: number;
 }
 
-export interface RandomizerState {
+export interface RollState {
   attributes: AttributeState;
   skill: string;
+}
+
+export interface AnimationState {
+  isAnimating: boolean;
+  animationSkill: string;
+  animationAttributes: AttributeState;
+}
+
+export interface RandomizerState extends RollState {
+  animation?: AnimationState;
 }
 
 const initialState: RandomizerState = {
@@ -44,10 +54,20 @@ export const randomizerSlice = createSlice({
       state.attributes = newState.payload.attributes;
       state.skill = newState.payload.skill;
     },
+    setAnimationFrame: (state, animation: PayloadAction<AnimationState>) => {
+      state.animation = animation.payload;
+    },
+    stopAnimation: (state) => {
+      if (state.animation) {
+        state.animation.isAnimating = false;
+      }
+    }
   }
 });
 
-export const generateRandomAttributes = (): AttributeState => {
+export const { updateAttributes, update, setAnimationFrame, stopAnimation } = randomizerSlice.actions;
+
+export const generateRandomAttributes = (suppressLogs?: boolean): AttributeState => {
   let strRand = Math.random();
   let dexRand = Math.random();
   let vitRand = Math.random();
@@ -57,30 +77,30 @@ export const generateRandomAttributes = (): AttributeState => {
   dexRand *= 5 / total;
   vitRand *= 5 / total;
   ergRand *= 5 / total;
-  console.log(`Str: ${strRand}\nDex: ${dexRand}\nVit: ${vitRand}\nErg: ${ergRand}`)
+  !suppressLogs && console.log(`Str: ${strRand}\nDex: ${dexRand}\nVit: ${vitRand}\nErg: ${ergRand}`)
   strRand = Math.round(strRand);
   dexRand = Math.round(dexRand);
   vitRand = Math.round(vitRand);
   ergRand = Math.round(ergRand);
   total = strRand + dexRand + vitRand + ergRand;
-  console.log(total)
+  !suppressLogs && console.log(total)
   if (total < 5) {
-    console.log('Total less than five');
+    !suppressLogs && console.log('Total less than five');
     const arr = [strRand, dexRand, vitRand, ergRand];
     const num = Math.floor(Math.random() * 4);
-    console.log(`Adding to index ${num}`);
+    !suppressLogs && console.log(`Adding to index ${num}`);
     arr[num] += 1;
     [strRand, dexRand, vitRand, ergRand] = arr;
   }
   while(total > 5) {
-    console.log('Total greater than five');
+    !suppressLogs && console.log('Total greater than five');
     const arr = [strRand, dexRand, vitRand, ergRand];
     const num = Math.floor(Math.random() * 4);
-    console.log('Attempting subtract from index ' + num);
+    !suppressLogs && console.log('Attempting subtract from index ' + num);
     if (arr[num] > 0) {
       arr[num] -= 1;
     } else {
-      console.log('Can\'t subtract, number already 0');
+      !suppressLogs && console.log('Can\'t subtract, number already 0');
     }
     [strRand, dexRand, vitRand, ergRand] = arr;
     total = strRand + dexRand + vitRand + ergRand;
@@ -99,7 +119,5 @@ export const pickRandomSkill = (skillCandidates: Array<[string, Skill]>): string
   console.log(`Picked ${skillCandidates[rand][1].name}`);
   return skillCandidates[rand][0];
 }
-
-export const { updateAttributes, update } = randomizerSlice.actions;
 
 export default randomizerSlice.reducer;

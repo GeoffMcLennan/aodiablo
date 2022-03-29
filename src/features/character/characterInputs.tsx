@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { MenuItem, Select, TextField } from '@mui/material';
 
+import './character.css';
+
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
   Hero,
@@ -31,6 +33,7 @@ export const CharacterInputs = () => {
       <TextField 
           value={level}
           label='Level'
+          id='levelField'
           disabled />
     </div>
   )

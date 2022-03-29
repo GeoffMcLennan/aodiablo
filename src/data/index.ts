@@ -9,6 +9,8 @@ export interface Skill {
   readonly image: string;
 }
 
+export type SkillArray = Array<[string, Skill]>;
+
 export * from './amazon';
 
 export const allSkills: Record<Hero, Record<string, Skill>> = {

@@ -1,0 +1,87 @@
+#randomizer-grid {
+  text-align: center;
+  padding: 20px 0 0 0;
+}
+
+.attribute-list-container {
+  list-style-type: none;
+}
+
+.skill-roulette-container {
+  height: 390px;
+  position: relative;
+  overflow: hidden;
+}
+
+.inner-roulette-container {
+  width: 132px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Animate down */
+.roulette-image {
+  display: block;
+  margin: 0;
+}
+
+.roulette-image.animate {
+  animation-duration: 50ms;
+  animation-name: roulette;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes roulette {
+  from {
+    padding-top: 0;
+  }
+
+  to {
+    padding-top: 130px;
+  }
+}
+
+.overlay-container {
+  width: 132px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 100;
+}
+
+.overlay-container .top-chunk {
+  position: relative;
+  display: block;
+  height: 80px;
+  background-color: #202020;
+  top: 0;
+  box-shadow: 0 20px 30px black;
+  clip-path: inset(0px 0px -40px 0px);
+}
+
+.overlay-container .window {
+  position: relative;
+  display: block;
+  height: 230px;
+}
+
+.overlay-container .bottom-chunk {
+  position: relative;
+  display: block;
+  height: 80px;
+  background-color: #202020;
+  bottom: 0;
+  box-shadow: 0 -20px 30px black;
+  clip-path: inset(-40px 0px 0px 0px);
+}
+
+.skill-label {
+  position: relative;
+  display: inline-block;
+}
