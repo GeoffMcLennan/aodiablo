@@ -24,16 +24,20 @@ export const Randomizer = () => {
   const dispatch = useAppDispatch();
   const skillCandidates = generateCandidates(skills, level, skillLevels);
 
-  const randomize = async () => {
-    const roll = {
-      attributes: generateRandomAttributes(),
-      skill: pickRandomSkill(skillCandidates),
+  const randomize = async (props: {isSkillQuest?: boolean, isAttributeQuest?: boolean}) => {
+    const {isSkillQuest, isAttributeQuest } = props;
+    const roll: RollState = {
+      attributes: isSkillQuest ? generateEmptyAttributes() : generateRandomAttributes(),
+      skill: isAttributeQuest ? '' : pickRandomSkill(skillCandidates),
+      isSkillQuest,
+      isAttributeQuest,
     };
-    // Update UI with latest roll
     await animate(dispatch, skillCandidates, roll);
     dispatch(update(roll));
     dispatch(addToHistory(roll));
-    dispatch(updateLevel(level + 1));
+    if (!isSkillQuest && !isAttributeQuest) {
+      dispatch(updateLevel(level + 1));
+    }
   }
   
   return (
@@ -45,7 +49,11 @@ export const Randomizer = () => {
         <Skill skillCandidates={skillCandidates} />
       </Grid>
       <Grid item xs={12}>
-        <Button variant='outlined' onClick={randomize} disabled={animation?.isAnimating}>Gamble!</Button>
+        <Button className='gamble-button' id='main-gamble' variant='outlined' onClick={e => randomize({})} disabled={animation?.isAnimating}>Gamble!</Button>
+      </Grid>
+      <Grid item xs={12}>
+        <Button className='gamble-button' variant='outlined' onClick={e => randomize({isAttributeQuest: true})} disabled={animation?.isAnimating}>Attribute Quest!</Button>
+        <Button className='gamble-button' variant='outlined' onClick={e => randomize({isSkillQuest: true})} disabled={animation?.isAnimating}>Skill Quest!</Button>
       </Grid>
     </Grid>
   )
@@ -90,8 +98,11 @@ const animateFrame = async (dispatch: AppDispatch, candidates: SkillArray, roll:
   // const animLength = 5000;
   const rollIndex = candidates.findIndex(value => value[0] === roll.skill);
   const currIndex = (rollIndex + currFrames) % candidates.length;
+  const isSpecialQuest = roll.isSkillQuest || roll.isAttributeQuest;
   dispatch(setAnimationFrame({
     isAnimating: true,
+    isAnimatingSkill: !roll.isAttributeQuest,
+    isAnimatingAttributes: !roll.isSkillQuest,
     animationSkill: candidates[currIndex][0],
     animationAttributes: generateAnimationAttributes(roll, currFrames),
   }));
@@ -105,8 +116,17 @@ const animateFrame = async (dispatch: AppDispatch, candidates: SkillArray, roll:
 const generateAnimationAttributes = (roll: RollState, currFrames: number): AttributeState => {
   return {
     strength: (roll.attributes.strength + currFrames) % 6,
-    dexterity: (roll.attributes.dexterity + currFrames) % 6,
+    dexterity: Math.abs((roll.attributes.dexterity - currFrames) % 6),
     vitality: (roll.attributes.vitality + currFrames) % 6,
-    energy: (roll.attributes.energy + currFrames) % 6,
+    energy: Math.abs((roll.attributes.energy - currFrames) % 6),
+  }
+}
+
+const generateEmptyAttributes = () => {
+  return {
+    strength: 0,
+    dexterity: 0,
+    vitality: 0,
+    energy: 0,
   }
 }

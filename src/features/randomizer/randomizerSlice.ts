@@ -12,10 +12,14 @@ export interface AttributeState {
 export interface RollState {
   attributes: AttributeState;
   skill: string;
+  isSkillQuest?: boolean;
+  isAttributeQuest?: boolean;
 }
 
 export interface AnimationState {
   isAnimating: boolean;
+  isAnimatingSkill: boolean;
+  isAnimatingAttributes: boolean;
   animationSkill: string;
   animationAttributes: AttributeState;
 }
@@ -61,6 +65,8 @@ export const randomizerSlice = createSlice({
     stopAnimation: (state) => {
       if (state.animation) {
         state.animation.isAnimating = false;
+        state.animation.isAnimatingSkill = false;
+        state.animation.isAnimatingAttributes = false;
       }
     },
     loadSavedRandomizer: (state, action: PayloadAction<HistoryState | undefined>) => {

@@ -15,7 +15,7 @@ export const Skill = (props: SkillProps) => {
   const { hero } = useAppSelector(state => state.character);
   const skills = allSkills[hero];
   let image: string, name: string, selectedSkill: string;
-  if (animation && animation.isAnimating) {
+  if (animation && animation.isAnimatingSkill) {
     selectedSkill = animation.animationSkill;
     image = skills[animation.animationSkill].image;
     name = '';
@@ -25,11 +25,11 @@ export const Skill = (props: SkillProps) => {
         ? skills[Object.keys(skills)[0]]
         : skills[skill];
     image = selected.image;
-    name = selected.name;
+    name = skill === '' ? '' : selected.name;
   }
   return (
     <div className='skill-roulette-container'>
-      <SkillRoulette skillCandidates={props.skillCandidates} selectedSkill={selectedSkill}  animate={animation?.isAnimating || false} />
+      <SkillRoulette skillCandidates={props.skillCandidates} selectedSkill={selectedSkill}  animate={animation?.isAnimatingSkill || false} />
       <SkillRouletteOverlay name={name} />
     </div>
   )

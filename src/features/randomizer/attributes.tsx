@@ -7,7 +7,7 @@ import { useAppSelector } from '../../app/hooks';
 export const Attributes = () => {
   const { attributes, animation } = useAppSelector(state => state.randomizer);
   let renderedAttributes;
-  if (animation && animation.isAnimating) {
+  if (animation && animation.isAnimatingAttributes) {
     renderedAttributes = animation.animationAttributes;
   } else {
     renderedAttributes = attributes;
