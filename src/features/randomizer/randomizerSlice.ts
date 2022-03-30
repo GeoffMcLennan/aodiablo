@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Skill } from '../../data';
+import { HistoryState } from '../history/historySlice';
 
 export interface AttributeState {
   strength: number;
@@ -61,11 +62,21 @@ export const randomizerSlice = createSlice({
       if (state.animation) {
         state.animation.isAnimating = false;
       }
-    }
+    },
+    loadSavedRandomizer: (state, action: PayloadAction<HistoryState | undefined>) => {
+      if (action.payload && action.payload.rolls.length) {
+        const lastRoll = action.payload.rolls[action.payload.rolls.length - 1];
+        state.skill = lastRoll.skill;
+        state.attributes = lastRoll.attributes;
+      } else {
+        state.skill = initialState.skill;
+        state.attributes = initialState.attributes;
+      }
+    },
   }
 });
 
-export const { updateAttributes, update, setAnimationFrame, stopAnimation } = randomizerSlice.actions;
+export const { updateAttributes, update, setAnimationFrame, stopAnimation, loadSavedRandomizer } = randomizerSlice.actions;
 
 export const generateRandomAttributes = (suppressLogs?: boolean): AttributeState => {
   let strRand = Math.random();

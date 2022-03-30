@@ -7,6 +7,8 @@ import { Randomizer } from './features/randomizer/randomizer';
 import { History } from './features/history/history';
 import { BrowserRouter } from 'react-router-dom';
 import { Header } from './features/header';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor } from './app/store';
 
 const theme = createTheme({
   palette: {
@@ -32,11 +34,13 @@ function App() {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Header />
-          <Container id='main-container' maxWidth='md'>
-            <CharacterInputs />
-            <Randomizer />
-            <History />
-          </Container>
+          <PersistGate loading={null} persistor={persistor}>
+            <Container id='main-container' maxWidth='md'>
+              <CharacterInputs />
+              <Randomizer />
+              <History />
+            </Container>
+          </PersistGate>
         </ThemeProvider>
       </BrowserRouter>
     </div>

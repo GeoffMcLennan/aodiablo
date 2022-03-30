@@ -10,6 +10,7 @@ import {
   updateHero,
   updateName,
 } from './characterSlice';
+import { updateSaveName } from '../persistor/persistorSlice';
 
 export const CharacterInputs = () => {
   const { hero, name, level } = useAppSelector(state => state.character);
@@ -29,6 +30,7 @@ export const CharacterInputs = () => {
           label='Name'
           onChange={e => {
             dispatch(updateName(e.target.value));
+            dispatch(updateSaveName({oldName: name, newName: e.target.value}));
           }} />
       <TextField 
           value={level}

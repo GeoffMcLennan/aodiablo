@@ -30,9 +30,18 @@ export const historySlice = createSlice({
         state.skillLevels[lastRoll.skill]--;
       }
     },
+    loadSavedHistory: (state, action: PayloadAction<HistoryState | undefined>) => {
+      if (action.payload) {
+        state.rolls = action.payload.rolls;
+        state.skillLevels = action.payload.skillLevels;
+      } else {
+        state.rolls = initialState.rolls;
+        state.skillLevels = initialState.skillLevels;
+      }
+    },
   }
 });
 
-export const { addToHistory, popLastRoll } = historySlice.actions;
+export const { addToHistory, popLastRoll, loadSavedHistory } = historySlice.actions;
 
 export default historySlice.reducer;

@@ -5,18 +5,21 @@ import { Button, Grid } from '@mui/material';
 import './randomizer.css';
 
 import { Attributes } from './attributes';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector, useAsyncState } from '../../app/hooks';
 import { AttributeState, generateRandomAttributes, pickRandomSkill, RollState, setAnimationFrame, stopAnimation, update } from './randomizerSlice';
 import { Skill } from './skill';
 import { allSkills, Skill as SkillType, SkillArray } from '../../data';
 import { addToHistory } from '../history/historySlice';
 import { updateLevel } from '../character/characterSlice';
 import { AppDispatch } from '../../app/store';
+import { updateSaveState } from '../persistor/persistorSlice';
 
 export const Randomizer = () => {
-  const { hero, level } = useAppSelector(state => state.character);
+  const character = useAppSelector(state => state.character);
+  const { hero, level } = character;
   const { skillLevels } = useAppSelector(state => state.history);
   const { animation } = useAppSelector(state => state.randomizer);
+  const history = useAppSelector(state => state.history);
   const skills = allSkills[hero];
   const dispatch = useAppDispatch();
   const skillCandidates = generateCandidates(skills, level, skillLevels);

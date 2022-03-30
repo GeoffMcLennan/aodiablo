@@ -8,7 +8,6 @@ export interface CharacterState {
   name: string;
   namePerm: boolean;
   level: number;
-  displayLevel: string;
 }
 
 const initialState: CharacterState = {
@@ -16,7 +15,6 @@ const initialState: CharacterState = {
   name: getRandomName(),
   namePerm: false,
   level: 2,
-  displayLevel: '2',
 };
 
 export const characterSlice = createSlice({
@@ -34,15 +32,24 @@ export const characterSlice = createSlice({
       state.namePerm = true;
     },
     updateLevel: (state, action: PayloadAction<number>) => {
-      state.level = action.payload
-      state.displayLevel = action.payload.toString()
+      state.level = action.payload;
     },
-    updateDisplayLevel: (state, action: PayloadAction<string>) => {
-      state.displayLevel = action.payload
+    loadSavedCharacter: (state, action: PayloadAction<CharacterState | undefined>) => {
+      if (action.payload) {
+        state.hero = action.payload.hero;
+        state.name = action.payload.name;
+        state.namePerm = action.payload.namePerm;
+        state.level = action.payload.level;
+      } else {
+        state.hero = initialState.hero;
+        state.name = initialState.name;
+        state.namePerm = initialState.namePerm;
+        state.level = initialState.level;
+      }
     },
   }
 });
 
-export const { updateHero, updateName, updateLevel, updateDisplayLevel} = characterSlice.actions;
+export const { updateHero, updateName, updateLevel, loadSavedCharacter } = characterSlice.actions;
 
 export default characterSlice.reducer;
