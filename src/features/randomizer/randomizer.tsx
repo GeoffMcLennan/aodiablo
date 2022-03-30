@@ -6,17 +6,17 @@ import './randomizer.css';
 
 import { Attributes } from './attributes';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { AttributeState, generateRandomAttributes, pickRandomSkill, RandomizerState, RollState, setAnimationFrame, stopAnimation, update } from './randomizerSlice';
+import { AttributeState, generateRandomAttributes, pickRandomSkill, RollState, setAnimationFrame, stopAnimation, update } from './randomizerSlice';
 import { Skill } from './skill';
 import { allSkills, Skill as SkillType, SkillArray } from '../../data';
 import { addToHistory } from '../history/historySlice';
 import { updateLevel } from '../character/characterSlice';
 import { AppDispatch } from '../../app/store';
-import { resolve } from 'path';
 
 export const Randomizer = () => {
   const { hero, level } = useAppSelector(state => state.character);
   const { skillLevels } = useAppSelector(state => state.history);
+  const { animation } = useAppSelector(state => state.randomizer);
   const skills = allSkills[hero];
   const dispatch = useAppDispatch();
   const skillCandidates = generateCandidates(skills, level, skillLevels);
@@ -42,7 +42,7 @@ export const Randomizer = () => {
         <Skill skillCandidates={skillCandidates} />
       </Grid>
       <Grid item xs={12}>
-        <Button variant='outlined' onClick={randomize}>Randomize!</Button>
+        <Button variant='outlined' onClick={randomize} disabled={animation?.isAnimating}>Gamble!</Button>
       </Grid>
     </Grid>
   )
@@ -73,6 +73,7 @@ const generateCandidates =
 
 const animate = async (dispatch: AppDispatch, candidates: SkillArray, roll: RollState) => {
   const totalFrames = 40;
+  // const totalFrames = 10
   let currFrames = totalFrames;
   while (currFrames > 0) {
     await animateFrame(dispatch, candidates, roll, totalFrames, currFrames);
@@ -83,15 +84,16 @@ const animate = async (dispatch: AppDispatch, candidates: SkillArray, roll: Roll
 
 const animateFrame = async (dispatch: AppDispatch, candidates: SkillArray, roll: RollState, totalFrames: number, currFrames: number) => {
   const animLength = 2000;
+  // const animLength = 5000;
+  const rollIndex = candidates.findIndex(value => value[0] === roll.skill);
+  const currIndex = (rollIndex + currFrames) % candidates.length;
+  dispatch(setAnimationFrame({
+    isAnimating: true,
+    animationSkill: candidates[currIndex][0],
+    animationAttributes: generateAnimationAttributes(roll, currFrames),
+  }));
   return new Promise((res, reject) => {
     setTimeout(() => {
-      const rollIndex = candidates.findIndex(value => value[0] === roll.skill);
-      const currIndex = (rollIndex + currFrames) % candidates.length;
-      dispatch(setAnimationFrame({
-        isAnimating: true,
-        animationSkill: candidates[currIndex][0],
-        animationAttributes: generateAnimationAttributes(roll, currFrames),
-      }));
       res(null);
     }, animLength / totalFrames);
   })

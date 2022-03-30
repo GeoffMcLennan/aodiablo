@@ -15,11 +15,27 @@ export const Attributes = () => {
   
   return (
     <div className='attribute-list-container'>
-      <div>
-        <div>Strength: {renderedAttributes.strength}</div>
-        <div>Dexterity: {renderedAttributes.dexterity}</div>
-        <div>Vitality: {renderedAttributes.vitality}</div>
-        <div>Energy: {renderedAttributes.energy}</div>
+      <div className='attribute-list-inner-container'>
+        <table>
+          <tbody>
+            <tr>
+              <td className='label'>Strength</td>
+              <td className='value'>{renderedAttributes.strength}</td>
+            </tr>
+            <tr>
+              <td className='label'>Dexterity</td>
+              <td className='value'>{renderedAttributes.dexterity}</td>
+            </tr>
+            <tr>
+              <td className='label'>Vitality</td>
+              <td className='value'>{renderedAttributes.vitality}</td>
+            </tr>
+            <tr>
+              <td className='label'>Energy</td>
+              <td className='value'>{renderedAttributes.energy}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   )

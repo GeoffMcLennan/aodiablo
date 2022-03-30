@@ -32,7 +32,7 @@ function App() {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Header />
-          <Container id ='main-container'>
+          <Container id='main-container' maxWidth='md'>
             <CharacterInputs />
             <Randomizer />
             <History />

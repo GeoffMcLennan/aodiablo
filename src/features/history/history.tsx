@@ -1,4 +1,7 @@
+import { Grid } from '@mui/material';
 import React, { ReactFragment } from 'react';
+
+import './history.css';
 
 import { useAppSelector } from '../../app/hooks';
 import { allSkills } from '../../data';
@@ -16,22 +19,32 @@ export const History = () => {
     const skillLevel = skillLevelsCopy[roll.skill];
     skillLevelsCopy[roll.skill]--;
     historyRows.push(
-      <li key={currLevel}>
-        Level {currLevel--} - 
-        Str: {roll.attributes.strength} - 
-        Dex: {roll.attributes.dexterity} - 
-        Vit: {roll.attributes.vitality} - 
-        Enr: {roll.attributes.energy} - 
-        {allSkills[hero][roll.skill].name} (lvl {skillLevel})
-      </li>
+      <Grid container item spacing={1} key={currLevel}>
+        <Grid item xs={4} md={2}>
+          Level {currLevel--}
+        </Grid>
+        <Grid item xs={8} md={4}>
+          {allSkills[hero][roll.skill].name} (lvl {skillLevel})
+        </Grid>
+        <Grid item xs={3} md={1.5}>
+          Str: {roll.attributes.strength}
+        </Grid>
+        <Grid item xs={3} md={1.5}>
+          Dex: {roll.attributes.dexterity}
+        </Grid>
+        <Grid item xs={3} md={1.5}>
+          Vit: {roll.attributes.vitality}
+        </Grid>
+        <Grid item xs={3} md={1.5}>
+          Enr: {roll.attributes.energy}
+        </Grid>
+      </Grid>
     )
   }
 
   return (
-    <div>
-      <ul>
-        {historyRows}
-      </ul>
-    </div>
+    <Grid container className='history-container'>
+      {historyRows}
+    </Grid>
   )
 }

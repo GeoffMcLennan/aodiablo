@@ -7,7 +7,7 @@ export const Header = () => {
     <AppBar position='static'>
       <Toolbar>
         <img id='gheed' src='https://aodiablo.s3.us-west-2.amazonaws.com/Gheed_icon_close_sq.png' />
-        <Typography variant='h3'>Gheeds Gambit</Typography>
+        <Typography variant='h3'>Gheed's Gambit</Typography>
       </Toolbar>
     </AppBar>
   )

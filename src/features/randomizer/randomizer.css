@@ -4,7 +4,28 @@
 }
 
 .attribute-list-container {
-  list-style-type: none;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+}
+
+.attribute-list-inner-container {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  margin: auto;
+}
+
+td.label {
+  /* text-align: right; */
+  padding: 0 5px;
+}
+
+td.value {
+  width: 20px;
+  height: 25px;
 }
 
 .skill-roulette-container {
@@ -30,6 +51,7 @@
 
 .roulette-image.animate {
   animation-duration: 50ms;
+  /* animation-duration: 500ms; */
   animation-name: roulette;
   animation-iteration-count: infinite;
   animation-timing-function: linear;

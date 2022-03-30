@@ -46,7 +46,7 @@ export const SkillRoulette = (props: SkillRouletteProps) => {
   const bottomIndex = selectedIndex < (props.skillCandidates.length - 1) ? selectedIndex + 1 : 0;
   return (
     <div className='inner-roulette-container'>
-      <img className={`roulette-image ${props.animate && 'animate'}`} id='top' src={props.skillCandidates[topIndex][1].image} />
+      <img className={`roulette-image ${props.animate ? 'animate' : ''}`} id='top' src={props.skillCandidates[topIndex][1].image} />
       <img className='roulette-image' id='middle' src={props.skillCandidates[selectedIndex][1].image} />
       <img className='roulette-image' id='bottom' src={props.skillCandidates[bottomIndex][1].image} />
     </div>
