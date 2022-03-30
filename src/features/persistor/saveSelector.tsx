@@ -1,12 +1,12 @@
-import { MenuItem, Select } from "@mui/material"
+import { Button, MenuItem, Select } from "@mui/material"
 
 import './persistor.css';
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { AppDispatch } from "../../app/store";
 import { SaveState, updateSaveState } from "./persistorSlice";
-import { loadSavedCharacter } from "../character/characterSlice";
-import { loadSavedHistory } from "../history/historySlice";
+import { CharacterState, loadSavedCharacter } from "../character/characterSlice";
+import { HistoryState, loadSavedHistory } from "../history/historySlice";
 import { loadSavedRandomizer } from "../randomizer/randomizerSlice";
 
 const CREATE_NEW_KEY = 'create_new_key';
@@ -18,6 +18,9 @@ export const SaveSelector = () => {
   const { saves } = useAppSelector(state => state.persistor);
   const dispatch = useAppDispatch();
   const save = saves.find(val => val[0] === name);
+  if (!save) {
+    saveCharacter(dispatch, history, character);
+  }
   return (
     <div className='save-selector-container'>
       <Select
@@ -34,6 +37,10 @@ export const SaveSelector = () => {
       </Select>
     </div>
   )
+}
+
+const saveCharacter = (dispatch: AppDispatch, history: HistoryState, character: CharacterState) => {
+  dispatch(updateSaveState({history, character}));
 }
 
 const loadSave = (dispatch: AppDispatch, save: [string, SaveState] | undefined) => {

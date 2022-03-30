@@ -42,7 +42,7 @@ export const characterSlice = createSlice({
         state.level = action.payload.level;
       } else {
         state.hero = initialState.hero;
-        state.name = initialState.name;
+        state.name = getRandomName();
         state.namePerm = initialState.namePerm;
         state.level = initialState.level;
       }
