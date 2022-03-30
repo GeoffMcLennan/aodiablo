@@ -4,11 +4,13 @@ import { RandomizerState } from "../randomizer/randomizerSlice";
 export interface HistoryState {
   rolls: Array<RandomizerState>;
   skillLevels: Record<string, number>;
+  promptState: number;
 }
 
 const initialState: HistoryState = {
   rolls: [],
   skillLevels: {},
+  promptState: 0,
 }
 
 export const historySlice = createSlice({
@@ -39,9 +41,16 @@ export const historySlice = createSlice({
         state.skillLevels = initialState.skillLevels;
       }
     },
+    incrementPromptState: (state) => {
+      if (state.promptState == 4) {
+        state.promptState = 0;
+      } else {
+        state.promptState++;
+      }
+    },
   }
 });
 
-export const { addToHistory, popLastRoll, loadSavedHistory } = historySlice.actions;
+export const { addToHistory, popLastRoll, loadSavedHistory, incrementPromptState } = historySlice.actions;
 
 export default historySlice.reducer;

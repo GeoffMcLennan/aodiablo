@@ -32,6 +32,7 @@ export const characterSlice = createSlice({
       state.namePerm = true;
     },
     updateLevel: (state, action: PayloadAction<number>) => {
+      if (action.payload > 2 && action.payload < 99)
       state.level = action.payload;
     },
     loadSavedCharacter: (state, action: PayloadAction<CharacterState | undefined>) => {
