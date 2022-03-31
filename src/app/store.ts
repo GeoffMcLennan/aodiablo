@@ -13,6 +13,7 @@ import characterReducer from '../features/character/characterSlice';
 import randomizerReducer from '../features/randomizer/randomizerSlice';
 import historyReducer from '../features/history/historySlice';
 import persistorReducer from '../features/persistor/persistorSlice';
+import appReducer from '../features/app/appSlice';
 
 const persistConfig = {
   key: 'root',
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   randomizer: randomizerReducer,
   history: historyReducer,
   persistor: persistorReducer,
+  app: appReducer,
 });
 
 export const store = configureStore({

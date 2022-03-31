@@ -2,3 +2,25 @@
   height: 64px;
   width: 85px;
 }
+
+.help-button-container {
+  height: 100%;
+}
+
+button.help-button {
+  height: 56px;
+  width: 56px;
+  min-width: 56px;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+button.modal-close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.help-paragraph {
+  margin: 5px 0;
+}
