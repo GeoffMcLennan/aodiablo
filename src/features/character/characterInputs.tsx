@@ -20,10 +20,17 @@ export const CharacterInputs = () => {
       <Select 
           value={hero}
           label='Class'
+          disabled={level > 2}
           onChange={e => {
             dispatch(updateHero(e.target.value as Hero));
           }} >
         <MenuItem value='amazon'>Amazon</MenuItem>
+        <MenuItem value='assassin'>Assassin</MenuItem>
+        <MenuItem value='barbarian'>Barbarian</MenuItem>
+        <MenuItem value='druid'>Druid</MenuItem>
+        <MenuItem value='necromancer'>Necromancer</MenuItem>
+        <MenuItem value='paladin'>Paladin</MenuItem>
+        <MenuItem value='sorceress'>Sorceress</MenuItem>
       </Select>
       <TextField 
           value={name}

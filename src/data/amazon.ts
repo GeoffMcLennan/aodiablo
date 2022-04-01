@@ -1,6 +1,5 @@
 import { Skill } from ".";
 
-
 export const amazonSkills: Record<string, Skill> = {
   // Javelin & Spear
   jab: {

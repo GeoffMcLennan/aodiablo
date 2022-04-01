@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getRandomName } from '../../data/names';
 
-export type Hero = 'amazon' /* | 'assassin' */;
+export type Hero = 'amazon' | 'assassin' | 'barbarian' | 'druid' | 'necromancer' | 'paladin' | 'sorceress';
 
 export interface CharacterState {
   hero: Hero;

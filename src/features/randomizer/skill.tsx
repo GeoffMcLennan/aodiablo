@@ -4,7 +4,7 @@ import { Grid } from '@mui/material';
 
 import './randomizer.css';
 
-import { allSkills, amazonSkills, Skill as SkillType, SkillArray } from '../../data';
+import { allSkills, Skill as SkillType, SkillArray } from '../../data';
 import { useAppSelector } from '../../app/hooks';
 
 interface SkillProps {
@@ -20,9 +20,9 @@ export const Skill = (props: SkillProps) => {
     image = skills[animation.animationSkill].image;
     name = '';
   } else {
-    selectedSkill = skill === '' ? Object.keys(skills)[0] : skill;
+    selectedSkill = skill === '' ? props.skillCandidates[0][0] : skill;
     const selected = skill === ''
-        ? skills[Object.keys(skills)[0]]
+        ? props.skillCandidates[0][1] 
         : skills[skill];
     image = selected.image;
     name = skill === '' ? '' : selected.name;
