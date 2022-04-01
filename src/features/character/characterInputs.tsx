@@ -40,7 +40,7 @@ export const CharacterInputs = () => {
             dispatch(updateSaveName({oldName: name, newName: e.target.value}));
           }} />
       <TextField 
-          value={level}
+          value={level - 1}
           label='Level'
           id='levelField'
           disabled />
