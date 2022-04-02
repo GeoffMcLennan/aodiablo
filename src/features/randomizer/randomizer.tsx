@@ -9,17 +9,13 @@ import { useAppDispatch, useAppSelector, useAsyncState } from '../../app/hooks';
 import { AttributeState, generateRandomAttributes, pickRandomSkill, RollState, setAnimationFrame, stopAnimation, update } from './randomizerSlice';
 import { Skill } from './skill';
 import { allSkills, Skill as SkillType, SkillArray } from '../../data';
-import { addToHistory } from '../history/historySlice';
-import { updateLevel } from '../character/characterSlice';
 import { AppDispatch } from '../../app/store';
-import { updateSaveState } from '../persistor/persistorSlice';
 
 export const Randomizer = () => {
   const character = useAppSelector(state => state.character);
   const { hero, level } = character;
   const { skillLevels } = useAppSelector(state => state.history);
   const { animation } = useAppSelector(state => state.randomizer);
-  const history = useAppSelector(state => state.history);
   const skills = allSkills[hero];
   const dispatch = useAppDispatch();
   const skillCandidates = generateCandidates(skills, level, skillLevels);
@@ -34,11 +30,9 @@ export const Randomizer = () => {
     };
     await animate(dispatch, skillCandidates, roll);
     dispatch(update(roll));
-    dispatch(addToHistory(roll));
-    if (!isSkillQuest && !isAttributeQuest) {
-      dispatch(updateLevel(level + 1));
-    }
   }
+
+  const disableButtons = animation?.isAnimating || level >= 100;
   
   return (
     <Grid container id='randomizer-grid'>
@@ -49,11 +43,11 @@ export const Randomizer = () => {
         <Skill skillCandidates={skillCandidates} />
       </Grid>
       <Grid item xs={12}>
-        <Button className='gamble-button' id='main-gamble' variant='outlined' onClick={e => randomize({})} disabled={animation?.isAnimating}>Gamble!</Button>
+        <Button className='gamble-button' id='main-gamble' variant='outlined' onClick={e => randomize({})} disabled={disableButtons}>Gamble!</Button>
       </Grid>
       <Grid item xs={12}>
-        <Button className='gamble-button' variant='outlined' onClick={e => randomize({isAttributeQuest: true})} disabled={animation?.isAnimating}>Attribute Quest!</Button>
-        <Button className='gamble-button' variant='outlined' onClick={e => randomize({isSkillQuest: true})} disabled={animation?.isAnimating}>Skill Quest!</Button>
+        <Button className='gamble-button' variant='outlined' onClick={e => randomize({isAttributeQuest: true})} disabled={disableButtons}>Attribute Quest!</Button>
+        <Button className='gamble-button' variant='outlined' onClick={e => randomize({isSkillQuest: true})} disabled={disableButtons}>Skill Quest!</Button>
       </Grid>
     </Grid>
   )
@@ -90,7 +84,6 @@ const animate = async (dispatch: AppDispatch, candidates: SkillArray, roll: Roll
     await animateFrame(dispatch, candidates, roll, totalFrames, currFrames);
     currFrames--;
   }
-  dispatch(stopAnimation());
 }
 
 const animateFrame = async (dispatch: AppDispatch, candidates: SkillArray, roll: RollState, totalFrames: number, currFrames: number) => {
@@ -98,7 +91,6 @@ const animateFrame = async (dispatch: AppDispatch, candidates: SkillArray, roll:
   // const animLength = 5000;
   const rollIndex = candidates.findIndex(value => value[0] === roll.skill);
   const currIndex = (rollIndex + currFrames) % candidates.length;
-  const isSpecialQuest = roll.isSkillQuest || roll.isAttributeQuest;
   dispatch(setAnimationFrame({
     isAnimating: true,
     isAnimatingSkill: !roll.isAttributeQuest,

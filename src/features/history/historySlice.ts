@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RandomizerState } from "../randomizer/randomizerSlice";
+import { WritableDraft } from "immer/dist/types/types-external";
+import { RandomizerState, update } from "../randomizer/randomizerSlice";
 
 export interface HistoryState {
   rolls: Array<RandomizerState>;
@@ -18,13 +19,7 @@ export const historySlice = createSlice({
   initialState,
   reducers: {
     addToHistory: (state, roll: PayloadAction<RandomizerState>) => {
-      state.rolls.push(roll.payload);
-      const skill = roll.payload.skill;
-      if (state.skillLevels[skill]) {
-        state.skillLevels[skill]++;
-      } else {
-        state.skillLevels[skill] = 1;
-      }
+      _addToHistory(state, roll.payload);
     },
     popLastRoll: (state) => {
       const lastRoll = state.rolls.pop();
@@ -48,8 +43,23 @@ export const historySlice = createSlice({
         state.promptState++;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(update, (state, roll) => {
+      _addToHistory(state, roll.payload);
+    })
   }
 });
+
+const _addToHistory = (state: WritableDraft<HistoryState>, roll: RandomizerState) => {
+  state.rolls.push(roll);
+  const skill = roll.skill;
+  if (state.skillLevels[skill]) {
+    state.skillLevels[skill]++;
+  } else {
+    state.skillLevels[skill] = 1;
+  }
+}
 
 export const { addToHistory, popLastRoll, loadSavedHistory, incrementPromptState } = historySlice.actions;
 

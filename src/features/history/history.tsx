@@ -132,13 +132,13 @@ interface SkillQuestRowProps {
 const SkillQuestRow = (props: SkillQuestRowProps) => {
   return (
     <Grid container item spacing={1} className='history-row' key={props.currLevel}>
-      <Grid item xs={3}>
+      <Grid item xs={3} md={2}>
         Level {props.currLevel}
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={3} md={4}>
         Skill Quest
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={6} md={6}>
         {props.skillName} (lvl {props.skillLevel})
       </Grid>
     </Grid>

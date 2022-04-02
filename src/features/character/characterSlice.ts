@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getRandomName } from '../../data/names';
+import { update } from '../randomizer/randomizerSlice';
 
 export type Hero = 'amazon' | 'assassin' | 'barbarian' | 'druid' | 'necromancer' | 'paladin' | 'sorceress';
 
@@ -29,7 +30,7 @@ export const characterSlice = createSlice({
       state.namePerm = true;
     },
     updateLevel: (state, action: PayloadAction<number>) => {
-      if (action.payload > 2 && action.payload < 99)
+      if (action.payload > 2 && action.payload < 100)
       state.level = action.payload;
     },
     loadSavedCharacter: (state, action: PayloadAction<CharacterState | undefined>) => {
@@ -45,6 +46,16 @@ export const characterSlice = createSlice({
         state.level = initialState.level;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+        .addCase(update, (state, roll) => {
+          if (!roll.payload.isSkillQuest && !roll.payload.isAttributeQuest) {
+            if (state.level < 100) {
+              state.level++;
+            }
+          }
+        })
   }
 });
 

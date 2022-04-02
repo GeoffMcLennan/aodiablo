@@ -58,6 +58,11 @@ export const randomizerSlice = createSlice({
     update: (state, newState: PayloadAction<RandomizerState>) => {
       state.attributes = newState.payload.attributes;
       state.skill = newState.payload.skill;
+      if (state.animation) {
+        state.animation.isAnimating = false;
+        state.animation.isAnimatingSkill = false;
+        state.animation.isAnimatingAttributes = false;
+      }
     },
     setAnimationFrame: (state, animation: PayloadAction<AnimationState>) => {
       state.animation = animation.payload;
