@@ -35,7 +35,7 @@ export const persistorSlice = createSlice({
         save[0] = action.payload.newName;
       }
     }
-  }
+  },
 });
 
 export const { updateSaveState, updateSaveName } = persistorSlice.actions; 

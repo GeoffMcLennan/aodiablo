@@ -22,10 +22,7 @@ export const characterSlice = createSlice({
   initialState,
   reducers: {
     updateHero: (state, action: PayloadAction<Hero>) => {
-      state.hero = action.payload
-      if (!state.namePerm) {
-        state.name = getRandomName();
-      }
+      state.hero = action.payload;
     },
     updateName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
