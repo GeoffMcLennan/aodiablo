@@ -20,6 +20,7 @@ export const CharacterInputs = () => {
       <Select 
           value={hero}
           label='Class'
+          className='character-class-input'
           disabled={level > 2}
           onChange={e => {
             dispatch(updateHero(e.target.value as Hero));
@@ -35,6 +36,7 @@ export const CharacterInputs = () => {
       <TextField 
           value={name}
           label='Name'
+          className='character-name-input'
           onChange={e => {
             dispatch(updateName(e.target.value));
             dispatch(updateSaveName({oldName: name, newName: e.target.value}));

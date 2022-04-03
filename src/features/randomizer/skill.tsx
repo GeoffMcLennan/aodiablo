@@ -45,10 +45,12 @@ export const SkillRoulette = (props: SkillRouletteProps) => {
   const topIndex = selectedIndex > 0 ? selectedIndex - 1 : props.skillCandidates.length - 1;
   const bottomIndex = selectedIndex < (props.skillCandidates.length - 1) ? selectedIndex + 1 : 0;
   return (
-    <div className='inner-roulette-container'>
-      <img className={`roulette-image ${props.animate ? 'animate' : ''}`} id='top' src={props.skillCandidates[topIndex][1].image} />
-      <img className='roulette-image' id='middle' src={props.skillCandidates[selectedIndex][1].image} />
-      <img className='roulette-image' id='bottom' src={props.skillCandidates[bottomIndex][1].image} />
+    <div className='outer-roulette-container'>
+      <div className='inner-roulette-container'>
+        <img className={`roulette-image ${props.animate ? 'animate' : ''}`} id='top' src={props.skillCandidates[topIndex][1].image} />
+        <img className='roulette-image' id='middle' src={props.skillCandidates[selectedIndex][1].image} />
+        <img className='roulette-image' id='bottom' src={props.skillCandidates[bottomIndex][1].image} />
+      </div>
     </div>
   )
 }
@@ -60,9 +62,11 @@ export const SkillRouletteOverlay = (props: OverlayProps) => {
   return (
     <div className='overlay-container'>
       <div className='top-chunk' />
-      <div className='window' />
+      <div className='window button-container' />
       <div className='bottom-chunk'>
-        <h4 className='skill-label'>{props.name}</h4>
+        <div className='skill-label-container text-container'>
+          <h4 className='skill-label'>{props.name}</h4>
+        </div>
       </div>
     </div>
   )

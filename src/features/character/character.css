@@ -1,3 +1,11 @@
+.character-class-input {
+  min-width: 160px;
+}
+
+.character-name-input {
+  width: 160px;
+}
+
 #levelField {
   width: 30px;
   text-align: center;

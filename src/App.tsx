@@ -36,9 +36,13 @@ function App() {
           <Header />
           <PersistGate loading={null} persistor={persistor}>
             <Container id='main-container' maxWidth='md'>
-              <CharacterInputs />
-              <Randomizer />
-              <History />
+              <Container className='bordered-container-vertical sub-container'>
+                <CharacterInputs />
+                <Randomizer />
+              </Container>
+              <Container className='bordered-container-vertical sub-container'>
+                <History />
+              </Container>
             </Container>
           </PersistGate>
         </ThemeProvider>

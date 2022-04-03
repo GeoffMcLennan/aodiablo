@@ -4,12 +4,34 @@
 }
 
 .gamble-button {
-  width: 200px;
+  width: 100%
+}
+
+.solo-button-container {
+  justify-content: center;
+}
+
+.gamble-button.solo {
+  max-width: 400px;
+  align-self: center;
+}
+
+.shared-button-container {
+  justify-content: center;
+}
+
+.gamble-button.shared {
+  max-width: 200px;
 }
 
 .gamble-button#main-gamble {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   height: 50px;
+}
+
+.attribute-grid-item {
+  padding-bottom: 70px;
 }
 
 .attribute-list-container {
@@ -38,13 +60,26 @@ td.value {
 }
 
 .skill-roulette-container {
-  height: 390px;
+  height: 380px;
   position: relative;
   overflow: hidden;
 }
 
+.outer-roulette-container {
+  position: absolute;
+  height: 230px;
+  width: 132px;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .inner-roulette-container {
   width: 132px;
+  margin-top: -80px;
   position: absolute;
   left: 0;
   right: 0;
@@ -89,8 +124,7 @@ td.value {
 .overlay-container .top-chunk {
   position: relative;
   display: block;
-  height: 80px;
-  background-color: #202020;
+  height: 40px;
   top: 0;
   box-shadow: 0 20px 30px black;
   clip-path: inset(0px 0px -40px 0px);
@@ -100,19 +134,29 @@ td.value {
   position: relative;
   display: block;
   height: 230px;
+  width: 132px;
+  margin: -9px;
 }
 
 .overlay-container .bottom-chunk {
   position: relative;
   display: block;
   height: 80px;
-  background-color: #202020;
   bottom: 0;
   box-shadow: 0 -20px 30px black;
   clip-path: inset(-40px 0px 0px 0px);
+  padding-top: 20px;
+}
+
+.skill-label-container {
+  display: flex;
+  min-width: 102px;
+  min-height: 35px;
+  padding: 10px;
+  background-color: rgba(20, 20, 20, 0.6);
+  justify-content: center;
 }
 
 .skill-label {
-  position: relative;
-  display: inline-block;
+  margin: auto;
 }

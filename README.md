@@ -6,11 +6,13 @@ Welcome! This is a small side project I created while waiting for Diablo II Resu
 
 ## Task Backlog (by approximate priority)
 
-1. Support classes other than Amazon (I really hate data entry...)
-2. Support skill quests and attribute quests
-3. Persist state/multiple states, and make it shareable (so you don't lose your progress if you close the tab)
-4. Make it less ugly (I also hate CSS)
-4. Support undoing a roll (in case you make a mistake, not just because you don't like the roll 😇)
+1. ~~Support classes other than Amazon (I really hate data entry...)~~
+2. ~~Support skill quests and attribute quests~~
+3. ~~Persist state/multiple states, and make it shareable (so you don't lose your progress if you close the tab)~~
+4. ~~Make it less ugly (I also hate CSS)~~
+4. ~~Support undoing a roll (in case you make a mistake, not just because you don't like the roll 😇)~~
+5. ~~Fix the stuttering at the end of the animation~~ (sort of)
+6. Make it even less ugly
 
 ## Feedback
 
