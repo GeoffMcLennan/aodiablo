@@ -24,6 +24,7 @@
 .text-container {
   border: 5px solid transparent;
   border-image: url('https://aodiablo.s3.us-west-2.amazonaws.com/text_border.jpg') 10 stretch;
+  background-color: rgba(20, 20, 20, 0.6);
 }
 
 .button-container {

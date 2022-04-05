@@ -16,23 +16,23 @@ export const Attributes = () => {
   return (
     <div className='attribute-list-container'>
       <div className='attribute-list-inner-container'>
-        <table>
+        <table className='attribute-table'>
           <tbody>
-            <tr>
-              <td className='label'>Strength</td>
-              <td className='value'>{renderedAttributes.strength}</td>
+            <tr className='attribute-table-row'>
+              <td className='label text-container'>Strength</td>
+              <td className='value text-container'>{renderedAttributes.strength}</td>
             </tr>
-            <tr>
-              <td className='label'>Dexterity</td>
-              <td className='value'>{renderedAttributes.dexterity}</td>
+            <tr className='attribute-table-row'>
+              <td className='label text-container'>Dexterity</td>
+              <td className='value text-container'>{renderedAttributes.dexterity}</td>
             </tr>
-            <tr>
-              <td className='label'>Vitality</td>
-              <td className='value'>{renderedAttributes.vitality}</td>
+            <tr className='attribute-table-row'>
+              <td className='label text-container'>Vitality</td>
+              <td className='value text-container'>{renderedAttributes.vitality}</td>
             </tr>
-            <tr>
-              <td className='label'>Energy</td>
-              <td className='value'>{renderedAttributes.energy}</td>
+            <tr className='attribute-table-row'>
+              <td className='label text-container'>Energy</td>
+              <td className='value text-container'>{renderedAttributes.energy}</td>
             </tr>
           </tbody>
         </table>

@@ -43,18 +43,28 @@ export const Randomizer = () => {
         <Skill skillCandidates={skillCandidates} />
       </Grid>
       <Grid item xs={12}>
-        <Button className='gamble-button' id='main-gamble' variant='outlined' onClick={e => randomize({})} disabled={disableButtons}>Gamble!</Button>
+        <div className='button-container gamble-button-container' id='main-gamble'>
+          <Button className='gamble-button button-container' id='main-gamble' onClick={e => randomize({})} disabled={disableButtons}>Gamble!</Button>
+        </div>
       </Grid>
       <Grid item container xs={12}>
         <Grid item xs={12} className='solo-button-container' sx={{display: {xs: 'flex', sm: 'none'}}}>
-          <Button className='gamble-button solo' variant='outlined' onClick={e => randomize({isAttributeQuest: true})} disabled={disableButtons}>Attribute Quest!</Button>
+          <div className='button-container gamble-button-container solo'>
+            <Button className='gamble-button solo' onClick={e => randomize({isAttributeQuest: true})} disabled={disableButtons}>Attribute Quest!</Button>
+          </div>
         </Grid>
         <Grid item xs={12} className='solo-button-container' sx={{display: {xs: 'flex', sm: 'none'}}}>
-          <Button className='gamble-button solo' variant='outlined' onClick={e => randomize({isSkillQuest: true})} disabled={disableButtons}>Skill Quest!</Button>
+          <div className='button-container gamble-button-container solo'>
+            <Button className='gamble-button solo' onClick={e => randomize({isSkillQuest: true})} disabled={disableButtons}>Skill Quest!</Button>
+          </div>
         </Grid>
         <Grid item sm={12} className='shared-button-container' sx={{display: {xs: 'none', sm: 'flex'}}}>
-          <Button className='gamble-button shared' variant='outlined' onClick={e => randomize({isAttributeQuest: true})} disabled={disableButtons}>Attribute Quest!</Button>
-          <Button className='gamble-button shared' variant='outlined' onClick={e => randomize({isSkillQuest: true})} disabled={disableButtons}>Skill Quest!</Button>
+          <div className='button-container gamble-button-container shared'>
+            <Button className='gamble-button shared' onClick={e => randomize({isAttributeQuest: true})} disabled={disableButtons}>Attribute Quest!</Button>
+          </div>
+          <div className='button-container gamble-button-container shared'>
+            <Button className='gamble-button shared' onClick={e => randomize({isSkillQuest: true})} disabled={disableButtons}>Skill Quest!</Button>
+          </div>
         </Grid>
       </Grid>
     </Grid>

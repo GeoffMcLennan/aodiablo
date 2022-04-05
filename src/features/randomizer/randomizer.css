@@ -3,35 +3,64 @@
   padding: 20px 0 0 0;
 }
 
-.gamble-button {
-  width: 100%
+button.gamble-button {
+  width: 100%;
+  background-image: url('https://aodiablo.s3.us-west-2.amazonaws.com/button_background_stretch_original.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: 0;
+  box-sizing: border-box;
+  height: 35px;
+  transition-duration: 0s;
+  color: #E4D195;
+}
+
+button.gamble-button:hover {
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+.gamble-button-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.gamble-button-container#main-gamble {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.gamble-button-container.solo {
+  max-width: 400px;
+  align-self: center;
+}
+
+.gamble-button-container.shared {
+  max-width: 200px;
 }
 
 .solo-button-container {
   justify-content: center;
 }
 
-.gamble-button.solo {
-  max-width: 400px;
-  align-self: center;
-}
-
 .shared-button-container {
   justify-content: center;
 }
 
-.gamble-button.shared {
-  max-width: 200px;
-}
-
 .gamble-button#main-gamble {
-  max-width: 400px;
+  box-sizing: border-box;
+  margin: 0 auto;
   width: 100%;
   height: 50px;
 }
 
-.attribute-grid-item {
-  padding-bottom: 70px;
+.attribute-table {
+  border-spacing: 0 10px;
+}
+
+.attribute-table-row {
+  margin-bottom: 10px;
 }
 
 .attribute-list-container {
@@ -51,7 +80,11 @@
 
 td.label {
   /* text-align: right; */
-  padding: 0 5px;
+  padding: 0 20px;
+}
+
+td.value {
+  padding: 0 10px;
 }
 
 td.value {
@@ -153,7 +186,6 @@ td.value {
   min-width: 102px;
   min-height: 35px;
   padding: 10px;
-  background-color: rgba(20, 20, 20, 0.6);
   justify-content: center;
 }
 
